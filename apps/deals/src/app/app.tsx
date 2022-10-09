@@ -1,14 +1,16 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.scss';
-import NxWelcome from './nx-welcome';
+// import styles from './app.module.scss';
+import Home from '../pages/Home';
+import Header from './header';
+import { Provider } from 'react-redux';
+import { store } from '../store';
 
-export function App() {
+const App = () => {
   return (
-    <>
-      <NxWelcome title="deals" />
-      <div />
-    </>
+    <Provider store={store}>
+      <Header />
+      <Home />
+    </Provider>
   );
-}
+};
 
 export default App;
