@@ -2,6 +2,7 @@ import { WarningTwoIcon } from '@chakra-ui/icons';
 import {
   Avatar,
   AvatarGroup,
+  Link,
   Table,
   TableContainer,
   Tag,
@@ -11,6 +12,7 @@ import {
   Text,
   Th,
   Thead,
+  Tooltip,
   Tr,
 } from '@chakra-ui/react';
 import { DealProps } from '@my-nx-ws/data';
@@ -28,6 +30,14 @@ export interface DataTableProps {
 }
 
 const DataTable = ({ data, columns }: DataTableProps) => {
+  const formatAmount = (amount: number) => {
+    const formatter = new Intl.NumberFormat('en-UK', {
+      style: 'currency',
+      currency: 'GBP',
+    });
+    return formatter.format(amount);
+  };
+
   return (
     <TableContainer>
       <Table variant="striped" size={'sm'}>
@@ -41,7 +51,9 @@ const DataTable = ({ data, columns }: DataTableProps) => {
         <Tbody>
           {data.map((row) => (
             <Tr>
-              <Td>{row?.dealnumber}</Td>
+              <Td>
+                <Link>{row?.dealnumber}</Link>
+              </Td>
               <Td>{row?.customername}</Td>
               <Td>{row?.suppliername}</Td>
               <Td>
@@ -55,16 +67,28 @@ const DataTable = ({ data, columns }: DataTableProps) => {
                 )}
               </Td>
               <Td>{new Date(row?.datereceived || '').toLocaleString()}</Td>
-              <Td isNumeric>£ {row?.amountfinanced}</Td>
-              <Td>
-                <AvatarGroup size="sm" max={2}>
-                  {row?.owner?.map((owner) => (
-                    <Avatar name={owner} />
-                  ))}
-                </AvatarGroup>
+              <Td isNumeric>
+                {row?.amountfinanced ? formatAmount(row?.amountfinanced) : ''}
               </Td>
-              <Td maxW={'sm'} textOverflow="ellipsis">
-                <Text noOfLines={1}>{row.comments}</Text>
+              <Td>
+                <Tooltip label={row?.owner?.join(', ')}>
+                  <AvatarGroup size="sm" max={2}>
+                    {row?.owner?.map((owner) => (
+                      <Avatar name={owner} />
+                    ))}
+                  </AvatarGroup>
+                </Tooltip>
+              </Td>
+              <Td maxW={'sm'}>
+                <Tooltip label={row.comments}>
+                  <Text
+                    textOverflow="ellipsis"
+                    overflow="hidden"
+                    whiteSpace="nowrap"
+                  >
+                    {row.comments}
+                  </Text>
+                </Tooltip>
               </Td>
             </Tr>
           ))}

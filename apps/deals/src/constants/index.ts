@@ -1,1 +1,1 @@
-export const COLOR_SCHEME = 'teal';
+export const COLOR_SCHEME = 'blue';

@@ -25,7 +25,7 @@ import {
   StarIcon,
 } from '@chakra-ui/icons';
 
-const Links = ['Dashboard', 'Projects', 'Team'];
+const Links = ['Dashboard', 'Deals'];
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
