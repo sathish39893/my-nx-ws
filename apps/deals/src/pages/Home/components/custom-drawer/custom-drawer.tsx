@@ -17,10 +17,10 @@ import {
   InputLeftElement,
   useToast,
 } from '@chakra-ui/react';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { COLOR_SCHEME } from './constants';
-import { addDeal } from './dealSlice';
+import { COLOR_SCHEME } from '../../../../constants';
+import { addDeal } from '../../dealSlice';
 
 interface Props {
   isOpen: boolean;
@@ -47,7 +47,7 @@ const intialDealData = {
   comments: '',
 };
 
-const CustomDrawer = ({ isOpen, onClose }: Props) => {
+export const CustomDrawer = ({ isOpen, onClose }: Props) => {
   const [dealData, setdealData] = useState<DealProps>(intialDealData);
   const dispatch = useDispatch();
   const toast = useToast();
@@ -202,5 +202,3 @@ const CustomDrawer = ({ isOpen, onClose }: Props) => {
     </Drawer>
   );
 };
-
-export default CustomDrawer;

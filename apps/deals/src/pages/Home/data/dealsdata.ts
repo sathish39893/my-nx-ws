@@ -1,15 +1,6 @@
-interface dealProps {
-  dealnumber: string;
-  customername: string;
-  suppliername: string;
-  status: string;
-  datereceived: string;
-  amountfinanced: number;
-  owner: string[];
-  comments: string;
-}
+import { DealProps } from '@my-nx-ws/data';
 
-const dealsData: dealProps[] = [
+const dealsData: DealProps[] = [
   {
     dealnumber: 'AF002198',
     customername: 'Customer name',

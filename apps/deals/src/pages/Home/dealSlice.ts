@@ -1,30 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import dealsData from './dealsdata';
+import dealsData from './data/dealsdata';
+import { DealProps } from '@my-nx-ws/data';
 
-export interface DealState {
-  dealnumber?: string;
-  customername?: string;
-  suppliername?: string;
-  status?: string;
-  datereceived?: string;
-  amountfinanced?: number | null;
-  owner?: string[];
-  comments?: string;
-}
-
-const initialState: DealState[] = dealsData;
+const initialState: DealProps[] = dealsData;
 
 export const dealSlice = createSlice({
   name: 'deals',
   initialState,
   reducers: {
-    addDeal: (state: DealState[], action: PayloadAction<DealState>) => {
+    addDeal: (state: DealProps[], action: PayloadAction<DealProps>) => {
       state.push(action.payload);
     },
-    updateDeal: (state: DealState[], action: PayloadAction<DealState>) => {
-      const deals = action.payload;
-      const updatedDeal = [...state, deals];
+    updateDeal: (state: DealProps[], action: PayloadAction<DealProps>) => {
+      const updatedDeal = action.payload;
+      state.map((deal) =>
+        deal.dealnumber === updatedDeal.dealnumber ? updateDeal : deal
+      );
     },
   },
 });

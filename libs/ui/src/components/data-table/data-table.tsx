@@ -13,52 +13,21 @@ import {
   Thead,
   Tr,
 } from '@chakra-ui/react';
+import { DealProps } from '@my-nx-ws/data';
 
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+// import styles from './data-table.module.scss';
 
-interface columnProps {
+export interface ColumnProps {
   label: string;
   name: string;
 }
 
-const DataTable = () => {
-  const columns: columnProps[] = [
-    {
-      label: 'Deal #',
-      name: 'dealnumber',
-    },
-    {
-      label: 'Customer name',
-      name: 'customername',
-    },
-    {
-      label: 'Supplier',
-      name: 'suppliername',
-    },
-    {
-      label: 'Status',
-      name: 'dealstatus',
-    },
-    {
-      label: 'Date Received',
-      name: 'datereceived',
-    },
-    {
-      label: 'Amount Financed',
-      name: 'amountfinanced',
-    },
-    {
-      label: 'Handler',
-      name: 'owner',
-    },
-    {
-      label: 'Comments',
-      name: 'comments',
-    },
-  ];
-  const dealsData = useSelector((state: RootState) => state.deal);
+export interface DataTableProps {
+  data: DealProps[];
+  columns: ColumnProps[];
+}
 
+const DataTable = ({ data, columns }: DataTableProps) => {
   return (
     <TableContainer>
       <Table variant="striped" size={'sm'}>
@@ -70,7 +39,7 @@ const DataTable = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {dealsData.map((row) => (
+          {data.map((row) => (
             <Tr>
               <Td>{row?.dealnumber}</Td>
               <Td>{row?.customername}</Td>
@@ -104,4 +73,5 @@ const DataTable = () => {
     </TableContainer>
   );
 };
+
 export default DataTable;

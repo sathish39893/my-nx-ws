@@ -6,9 +6,8 @@ import {
   Stack,
   useDisclosure,
 } from '@chakra-ui/react';
-import { COLOR_SCHEME } from './constants';
-import DataTable from './DataTable';
-import CustomDrawer from './Drawer';
+import { CustomDrawer, DealsTable } from './components';
+import { COLOR_SCHEME } from '../../constants';
 
 const Home = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -27,7 +26,7 @@ const Home = () => {
         </Flex>
       </Box>
       <Box borderWidth="1px" borderRadius="lg" p={2}>
-        <DataTable />
+        <DealsTable />
       </Box>
 
       <CustomDrawer isOpen={isOpen} onClose={onClose} />
