@@ -15,21 +15,27 @@ import {
   Tooltip,
   Tr,
 } from '@chakra-ui/react';
-import { DealProps } from '@my-nx-ws/data';
+import { ColumnProps, DealProps } from '@my-nx-ws/data';
+import {
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from '@tanstack/react-table';
+import { useMemo } from 'react';
 
 // import styles from './data-table.module.scss';
 
-export interface ColumnProps {
-  label: string;
-  name: string;
-}
+export type DataTableProps = {
+  tableData: DealProps[];
+  columnsData: ColumnProps[];
+};
 
-export interface DataTableProps {
-  data: DealProps[];
-  columns: ColumnProps[];
-}
+const DataTable = ({ tableData, columnsData }: DataTableProps) => {
+  const columns = useMemo(() => columnsData, [columnsData]);
+  const data = useMemo(() => tableData, [tableData]);
 
-const DataTable = ({ data, columns }: DataTableProps) => {
   const formatAmount = (amount: number) => {
     const formatter = new Intl.NumberFormat('en-UK', {
       style: 'currency',
@@ -37,59 +43,95 @@ const DataTable = ({ data, columns }: DataTableProps) => {
     });
     return formatter.format(amount);
   };
+  const tableInstance = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+  });
+
+  const { getHeaderGroups, getRowModel } = tableInstance;
 
   return (
     <TableContainer>
       <Table variant="striped" size={'sm'}>
         <Thead>
-          <Tr>
-            {columns.map((column, index) => (
-              <Th key={index}>{column.label}</Th>
-            ))}
-          </Tr>
+          {getHeaderGroups().map((headerGroup) => (
+            <Tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <Th key={header.id}>
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext()
+                  )}
+                </Th>
+              ))}
+            </Tr>
+          ))}
         </Thead>
         <Tbody>
-          {data.map((row, index) => (
-            <Tr key={index}>
-              <Td>
-                <Link>{row?.dealnumber}</Link>
-              </Td>
-              <Td>{row?.customername}</Td>
-              <Td>{row?.suppliername}</Td>
-              <Td>
-                {row?.status === 'Urgent' ? (
-                  <Tag size={'md'} variant="solid" colorScheme={'red'}>
-                    <TagLeftIcon as={WarningTwoIcon} />
-                    {row.status}
-                  </Tag>
-                ) : (
-                  <Text>{row.status}</Text>
-                )}
-              </Td>
-              <Td>{new Date(row?.datereceived || '').toLocaleString()}</Td>
-              <Td isNumeric>
-                {row?.amountfinanced ? formatAmount(row?.amountfinanced) : ''}
-              </Td>
-              <Td>
-                <Tooltip label={row?.owner?.join(', ')}>
-                  <AvatarGroup size="sm" max={2}>
-                    {row?.owner?.map((owner, index) => (
-                      <Avatar name={owner} key={index} />
-                    ))}
-                  </AvatarGroup>
-                </Tooltip>
-              </Td>
-              <Td maxW={'sm'}>
-                <Tooltip label={row.comments}>
-                  <Text
-                    textOverflow="ellipsis"
-                    overflow="hidden"
-                    whiteSpace="nowrap"
-                  >
-                    {row.comments}
-                  </Text>
-                </Tooltip>
-              </Td>
+          {getRowModel().rows.map((row) => (
+            <Tr key={row.id}>
+              {row.getVisibleCells().map((cell) => {
+                let data = flexRender(
+                  cell.column.columnDef.cell,
+                  cell.getContext()
+                );
+                const cellValue = cell.getValue();
+                const columnName = cell.column.columnDef.header
+                  ?.toString()
+                  .toLocaleLowerCase();
+                if (columnName === 'status' && cellValue === 'Urgent') {
+                  data = (
+                    <Tag size={'md'} variant="solid" colorScheme={'red'}>
+                      <TagLeftIcon as={WarningTwoIcon} />
+                      {cellValue?.toString()}
+                    </Tag>
+                  );
+                }
+                if (columnName === 'deal #') {
+                  data = <Link>{cellValue?.toString()}</Link>;
+                }
+                if (columnName === 'amount financed') {
+                  data = formatAmount(Number(cellValue));
+                }
+                if (columnName === 'date received') {
+                  data = new Date(cellValue?.toString() || '').toLocaleString();
+                }
+                if (columnName === 'handler') {
+                  data = (
+                    <Tooltip label={cellValue?.toString()}>
+                      <AvatarGroup size="sm" max={2}>
+                        {cellValue
+                          ?.toString()
+                          ?.split(', ')
+                          .map((owner, index) => (
+                            <Avatar name={owner} key={index} />
+                          ))}
+                      </AvatarGroup>
+                    </Tooltip>
+                  );
+                }
+                if (columnName === 'comments') {
+                  data = (
+                    <Tooltip label={cellValue?.toString()}>
+                      <Text
+                        textOverflow="ellipsis"
+                        overflow="hidden"
+                        whiteSpace="nowrap"
+                      >
+                        {cellValue?.toString()}
+                      </Text>
+                    </Tooltip>
+                  );
+                }
+                return (
+                  <Td key={cell.id} maxW={'sm'}>
+                    {data}
+                  </Td>
+                );
+              })}
             </Tr>
           ))}
         </Tbody>

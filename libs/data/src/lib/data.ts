@@ -13,7 +13,7 @@ export interface DealProps {
   comments?: string;
 }
 
-export interface DealColumnProps {
-  label: string;
-  name: string;
-}
+export type ColumnProps = {
+  header: string;
+  accessorKey: string;
+};
