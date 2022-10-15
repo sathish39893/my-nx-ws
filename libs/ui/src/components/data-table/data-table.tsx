@@ -43,14 +43,14 @@ const DataTable = ({ data, columns }: DataTableProps) => {
       <Table variant="striped" size={'sm'}>
         <Thead>
           <Tr>
-            {columns.map((column) => (
-              <Th>{column.label}</Th>
+            {columns.map((column, index) => (
+              <Th key={index}>{column.label}</Th>
             ))}
           </Tr>
         </Thead>
         <Tbody>
-          {data.map((row) => (
-            <Tr>
+          {data.map((row, index) => (
+            <Tr key={index}>
               <Td>
                 <Link>{row?.dealnumber}</Link>
               </Td>
@@ -73,8 +73,8 @@ const DataTable = ({ data, columns }: DataTableProps) => {
               <Td>
                 <Tooltip label={row?.owner?.join(', ')}>
                   <AvatarGroup size="sm" max={2}>
-                    {row?.owner?.map((owner) => (
-                      <Avatar name={owner} />
+                    {row?.owner?.map((owner, index) => (
+                      <Avatar name={owner} key={index} />
                     ))}
                   </AvatarGroup>
                 </Tooltip>
