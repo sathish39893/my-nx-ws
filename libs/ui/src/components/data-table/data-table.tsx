@@ -1,18 +1,10 @@
-import { WarningTwoIcon } from '@chakra-ui/icons';
 import {
-  Avatar,
-  AvatarGroup,
-  Link,
   Table,
   TableContainer,
-  Tag,
-  TagLeftIcon,
   Tbody,
   Td,
-  Text,
   Th,
   Thead,
-  Tooltip,
   Tr,
 } from '@chakra-ui/react';
 import { ColumnProps, DealProps } from '@my-nx-ws/data';
@@ -24,6 +16,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { useMemo } from 'react';
+import columns from './data-table-columns';
 
 // import styles from './data-table.module.scss';
 
@@ -32,17 +25,9 @@ export type DataTableProps = {
   columnsData: ColumnProps[];
 };
 
-const DataTable = ({ tableData, columnsData }: DataTableProps) => {
-  const columns = useMemo(() => columnsData, [columnsData]);
+const DataTable = ({ tableData }: DataTableProps) => {
   const data = useMemo(() => tableData, [tableData]);
 
-  const formatAmount = (amount: number) => {
-    const formatter = new Intl.NumberFormat('en-UK', {
-      style: 'currency',
-      currency: 'GBP',
-    });
-    return formatter.format(amount);
-  };
   const tableInstance = useReactTable({
     data,
     columns,
@@ -74,61 +59,9 @@ const DataTable = ({ tableData, columnsData }: DataTableProps) => {
           {getRowModel().rows.map((row) => (
             <Tr key={row.id}>
               {row.getVisibleCells().map((cell) => {
-                let data = flexRender(
-                  cell.column.columnDef.cell,
-                  cell.getContext()
-                );
-                const cellValue = cell.getValue();
-                const columnName = cell.column.columnDef.header
-                  ?.toString()
-                  .toLocaleLowerCase();
-                if (columnName === 'status' && cellValue === 'Urgent') {
-                  data = (
-                    <Tag size={'md'} variant="solid" colorScheme={'red'}>
-                      <TagLeftIcon as={WarningTwoIcon} />
-                      {cellValue?.toString()}
-                    </Tag>
-                  );
-                }
-                if (columnName === 'deal #') {
-                  data = <Link>{cellValue?.toString()}</Link>;
-                }
-                if (columnName === 'amount financed') {
-                  data = formatAmount(Number(cellValue));
-                }
-                if (columnName === 'date received') {
-                  data = new Date(cellValue?.toString() || '').toLocaleString();
-                }
-                if (columnName === 'handler') {
-                  data = (
-                    <Tooltip label={cellValue?.toString()}>
-                      <AvatarGroup size="sm" max={2}>
-                        {cellValue
-                          ?.toString()
-                          ?.split(', ')
-                          .map((owner, index) => (
-                            <Avatar name={owner} key={index} />
-                          ))}
-                      </AvatarGroup>
-                    </Tooltip>
-                  );
-                }
-                if (columnName === 'comments') {
-                  data = (
-                    <Tooltip label={cellValue?.toString()}>
-                      <Text
-                        textOverflow="ellipsis"
-                        overflow="hidden"
-                        whiteSpace="nowrap"
-                      >
-                        {cellValue?.toString()}
-                      </Text>
-                    </Tooltip>
-                  );
-                }
                 return (
                   <Td key={cell.id} maxW={'sm'}>
-                    {data}
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </Td>
                 );
               })}

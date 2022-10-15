@@ -8,7 +8,7 @@ const dealsData: DealProps[] = [
     status: 'Deal Next Month',
     datereceived: '2022-10-08T15:10',
     amountfinanced: 150000,
-    owner: ['Sathish Panthagani', 'Tom Wat', 'Nicholas Moss'],
+    owner: ['Romy Ket', 'Tom Wat', 'Joy Rhods'],
     comments: 'general comments for deal',
   },
   {
@@ -28,7 +28,7 @@ const dealsData: DealProps[] = [
     status: 'Getting ready to pay',
     datereceived: '2022-09-08T09:10',
     amountfinanced: 650000,
-    owner: ['Sathish Panthagani'],
+    owner: ['James Whatson'],
     comments:
       'general comments for deal , general comments for deal,  general comments for deal, general comments for deal, general comments for deal',
   },
@@ -39,7 +39,7 @@ const dealsData: DealProps[] = [
     status: 'Awaiting info/re-key',
     datereceived: '2022-07-08T10:12',
     amountfinanced: 650000,
-    owner: ['Sathish Panthagani'],
+    owner: ['Andrea K', 'Segun Adebayo'],
     comments:
       'general comments for deal , general comments for deal, general comments for deal',
   },
