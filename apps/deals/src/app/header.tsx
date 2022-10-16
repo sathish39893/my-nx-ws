@@ -16,18 +16,27 @@ import {
   useColorModeValue,
   Stack,
   useColorMode,
+  Icon,
 } from '@chakra-ui/react';
-import {
-  HamburgerIcon,
-  CloseIcon,
-  MoonIcon,
-  SunIcon,
-  StarIcon,
-} from '@chakra-ui/icons';
+import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { MdLocalOffer } from 'react-icons/md';
+import { Link as ReactLink } from 'react-router-dom';
 
-const Links = ['Dashboard', 'Deals'];
+type LinkProps = {
+  id: number;
+  label: string;
+  link: string;
+};
+const Links: LinkProps[] = [
+  { id: 1, label: 'Dashboard', link: '/' },
+  { id: 2, label: 'Deals', link: '/deals' },
+];
 
-const NavLink = ({ children }: { children: ReactNode }) => (
+type NavLinkProps = {
+  children: ReactNode;
+  to: string;
+};
+const NavLink = ({ children, to }: NavLinkProps) => (
   <Link
     px={2}
     py={1}
@@ -37,7 +46,8 @@ const NavLink = ({ children }: { children: ReactNode }) => (
       textDecoration: 'none',
       bg: useColorModeValue('gray.200', 'gray.700'),
     }}
-    href={'#'}
+    to={to}
+    as={ReactLink}
   >
     {children}
   </Link>
@@ -59,11 +69,13 @@ const Header = () => {
         />
         <HStack spacing={8} alignItems={'center'}>
           <Box>
-            <StarIcon fontSize={'x-large'} />
+            <Icon fontSize={'x-large'} as={MdLocalOffer} />
           </Box>
           <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
-            {Links.map((link) => (
-              <NavLink key={link}>{link}</NavLink>
+            {Links.map(({ id, label, link }) => (
+              <NavLink key={id} to={link}>
+                {label}
+              </NavLink>
             ))}
           </HStack>
         </HStack>
@@ -96,8 +108,10 @@ const Header = () => {
       {isOpen ? (
         <Box pb={4} display={{ md: 'none' }}>
           <Stack as={'nav'} spacing={4}>
-            {Links.map((link) => (
-              <NavLink key={link}>{link}</NavLink>
+            {Links.map(({ id, label, link }) => (
+              <NavLink key={id} to={link}>
+                {label}
+              </NavLink>
             ))}
           </Stack>
         </Box>

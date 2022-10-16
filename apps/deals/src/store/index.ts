@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import dealReducer from '../pages/Home/dealSlice';
+import dealReducer from '../pages/Deals/dealSlice';
 
 export const store = configureStore({
   reducer: {

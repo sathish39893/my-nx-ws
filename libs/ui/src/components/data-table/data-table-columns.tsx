@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { InfoIcon, WarningTwoIcon } from '@chakra-ui/icons';
 import {
   Avatar,
