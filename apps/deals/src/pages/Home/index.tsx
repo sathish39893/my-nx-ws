@@ -41,7 +41,7 @@ const Home = () => {
             fontWeight="700"
             lineHeight="100%"
           >
-            Weekly Revenue
+            Revenue By Week
           </Text>
           <Button
             alignItems="center"

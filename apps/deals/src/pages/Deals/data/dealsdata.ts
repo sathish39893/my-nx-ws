@@ -54,6 +54,161 @@ const dealsData: DealProps[] = [
     comments:
       'general comments for deal , general comments for deal, general comments for deal',
   },
+  {
+    dealnumber: 'AF002536',
+    customername: 'Customer name',
+    suppliername: 'Supplier name',
+    status: 'Urgent',
+    datereceived: '2022-07-08T10:10',
+    amountfinanced: 650000,
+    owner: ['Sathish Panthagani'],
+    comments:
+      'general comments for deal , general comments for deal, general comments for deal',
+  },
+  {
+    dealnumber: 'AF002536',
+    customername: 'Customer name',
+    suppliername: 'Supplier name',
+    status: 'Urgent',
+    datereceived: '2022-07-08T10:10',
+    amountfinanced: 650000,
+    owner: ['Sathish Panthagani'],
+    comments:
+      'general comments for deal , general comments for deal, general comments for deal',
+  },
+  {
+    dealnumber: 'AF002536',
+    customername: 'Customer name',
+    suppliername: 'Supplier name',
+    status: 'Urgent',
+    datereceived: '2022-07-08T10:10',
+    amountfinanced: 650000,
+    owner: ['Sathish Panthagani'],
+    comments:
+      'general comments for deal , general comments for deal, general comments for deal',
+  },
+  {
+    dealnumber: 'AF002536',
+    customername: 'Customer name',
+    suppliername: 'Supplier name',
+    status: 'Urgent',
+    datereceived: '2022-07-08T10:10',
+    amountfinanced: 650000,
+    owner: ['Sathish Panthagani'],
+    comments:
+      'general comments for deal , general comments for deal, general comments for deal',
+  },
+  {
+    dealnumber: 'AF002536',
+    customername: 'Customer name',
+    suppliername: 'Supplier name',
+    status: 'Urgent',
+    datereceived: '2022-07-08T10:10',
+    amountfinanced: 650000,
+    owner: ['Sathish Panthagani'],
+    comments:
+      'general comments for deal , general comments for deal, general comments for deal',
+  },
+  {
+    dealnumber: 'AF002536',
+    customername: 'Customer name',
+    suppliername: 'Supplier name',
+    status: 'Urgent',
+    datereceived: '2022-07-08T10:10',
+    amountfinanced: 650000,
+    owner: ['Sathish Panthagani'],
+    comments:
+      'general comments for deal , general comments for deal, general comments for deal',
+  },
+  {
+    dealnumber: 'AF002536',
+    customername: 'Customer name',
+    suppliername: 'Supplier name',
+    status: 'Urgent',
+    datereceived: '2022-07-08T10:10',
+    amountfinanced: 650000,
+    owner: ['Sathish Panthagani'],
+    comments:
+      'general comments for deal , general comments for deal, general comments for deal',
+  },
+  {
+    dealnumber: 'AF002536',
+    customername: 'Customer name',
+    suppliername: 'Supplier name',
+    status: 'Urgent',
+    datereceived: '2022-07-08T10:10',
+    amountfinanced: 650000,
+    owner: ['Sathish Panthagani'],
+    comments:
+      'general comments for deal , general comments for deal, general comments for deal',
+  },
+
+  {
+    dealnumber: 'AF002536',
+    customername: 'Customer name',
+    suppliername: 'Supplier name',
+    status: 'Urgent',
+    datereceived: '2022-07-08T10:10',
+    amountfinanced: 650000,
+    owner: ['Sathish Panthagani'],
+    comments:
+      'general comments for deal , general comments for deal, general comments for deal',
+  },
+  {
+    dealnumber: 'AF002536',
+    customername: 'Customer name',
+    suppliername: 'Supplier name',
+    status: 'Urgent',
+    datereceived: '2022-07-08T10:10',
+    amountfinanced: 650000,
+    owner: ['Sathish Panthagani'],
+    comments:
+      'general comments for deal , general comments for deal, general comments for deal',
+  },
+  {
+    dealnumber: 'AF002536',
+    customername: 'Customer name',
+    suppliername: 'Supplier name',
+    status: 'Urgent',
+    datereceived: '2022-07-08T10:10',
+    amountfinanced: 650000,
+    owner: ['Sathish Panthagani'],
+    comments:
+      'general comments for deal , general comments for deal, general comments for deal',
+  },
+  {
+    dealnumber: 'AF002536',
+    customername: 'Customer name',
+    suppliername: 'Supplier name',
+    status: 'Urgent',
+    datereceived: '2022-07-08T10:10',
+    amountfinanced: 650000,
+    owner: ['Sathish Panthagani'],
+    comments:
+      'general comments for deal , general comments for deal, general comments for deal',
+  },
+  {
+    dealnumber: 'AF002536',
+    customername: 'Customer name',
+    suppliername: 'Supplier name',
+    status: 'Urgent',
+    datereceived: '2022-07-08T10:10',
+    amountfinanced: 650000,
+    owner: ['Sathish Panthagani'],
+    comments:
+      'general comments for deal , general comments for deal, general comments for deal',
+  },
+  {
+    dealnumber: 'AF002536',
+    customername: 'Customer name',
+    suppliername: 'Supplier name',
+    status: 'Urgent',
+    datereceived: '2022-07-08T10:10',
+    amountfinanced: 650000,
+    owner: ['Sathish Panthagani'],
+    comments:
+      'general comments for deal , general comments for deal, general comments for deal',
+  },
 ];
 
 export default dealsData;
