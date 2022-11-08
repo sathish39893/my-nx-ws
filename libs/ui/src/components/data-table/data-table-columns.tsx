@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { InfoIcon, WarningTwoIcon } from '@chakra-ui/icons';
+import { EditIcon, InfoIcon, WarningTwoIcon } from '@chakra-ui/icons';
 import {
   Avatar,
   AvatarGroup,
   Flex,
+  IconButton,
   Link,
   Tag,
   TagLeftIcon,
@@ -35,6 +36,20 @@ const formatAmount = (amount: number) => {
 };
 
 const columns = [
+  columnHelper.accessor('option', {
+    id: 'options',
+    header: () => <Text>Options</Text>,
+    cell: ({ row }) => {
+      return (
+        <IconButton
+          aria-label="edit"
+          variant="unstyled"
+          icon={<EditIcon />}
+          onClick={() => console.log(row.original)}
+        />
+      );
+    },
+  }),
   columnHelper.accessor('dealnumber', {
     id: 'dealnumber',
     header: () => <Text>Deal #</Text>,

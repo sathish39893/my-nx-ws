@@ -56,7 +56,6 @@ export const CustomDrawer = ({ isOpen, onClose }: Props) => {
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     const { id, value } = e.target;
-    console.log('id, value', id, value);
     if (id === 'owner') {
       const newowner = dealData?.owner;
       newowner?.push(value);
